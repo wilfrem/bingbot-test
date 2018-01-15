@@ -5,13 +5,16 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 <body>
+	<a href="http://example.com" target="_blank">example.com 1</a><br />
+	<a href="http://example.com" target="_blank">example.com 2</a><br />
 <script>
 var id = localStorage.getItem("id");
 if (!id) {
 	id = Math.floor(Math.random() * 100000000) + 1;
 	localStorage.setItem("id", id);
 }
-document.write("<div style='font-size: 32px'>your id is " + id);
+document.write("<div style='font-size: 32px'>your id is " + id + "</div>");
+document.write(navigator.userAgent);
 </script>
 </body>
 </html>
