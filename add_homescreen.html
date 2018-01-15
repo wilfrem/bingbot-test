@@ -7,6 +7,7 @@
 <body>
 	<a href="http://example.com" target="_blank">example.com 1</a><br />
 	<a href="http://example.com" target="_blank">example.com 2</a><br />
+	<div id="whatBrowser"></div>
 <script>
 var id = localStorage.getItem("id");
 if (!id) {
@@ -15,6 +16,23 @@ if (!id) {
 }
 document.write("<div style='font-size: 32px'>your id is " + id + "</div>");
 document.write(navigator.userAgent);
+function browserTest() {
+  var whatBrowser = document.getElementById("whatBrowser");
+  var lte9 = /Constructor/i.test(window.HTMLElement);
+  var nav = window.navigator, ua = nav.userAgent, idb = !!window.indexedDB;
+  var browserText = "Other Browser"; 
+
+  if (ua.indexOf('Safari') !== -1 && ua.indexOf('Version') !== -1 && !nav.standalone) { 
+    browserText = "Safari";
+  } else if ((!idb && lte9) || !window.statusbar.visible) {
+    browserText = "UIWebView";
+  } else if ((window.webkit && window.webkit.messageHandlers) || !lte9 || idb) {
+    browserText = "WKWebView";
+  }
+  
+  whatBrowser.innerHTML = browserText;
+}
+browserTest();
 </script>
 </body>
 </html>
